@@ -7,3 +7,4 @@ export { InboundNotification, InboundRequest, BaseConnection } from './BaseConne
 export { List } from './List';
 export { Logger } from './Logger';
 export { skipIfClosed } from './decorators';
+export { Next, Middleware, Pipeline } from './Middleware';
