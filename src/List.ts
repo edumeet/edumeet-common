@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-export type List<T extends { id: string }> = {
+export type List<T extends { id?: string, pid?: number }> = {
 	add: (...items: T[]) => number;
 	moveFirst: (item: T) => void;
 	has: (item: T) => boolean;
@@ -12,14 +12,7 @@ export type List<T extends { id: string }> = {
 }
 /* eslint-enable no-unused-vars */
 
-/**
- * A list of items that can be added to, removed from, and iterated over.
- * 
- * @param {T} initialItems - The initial items to add to the list.
- * @returns {List<T>} The list of items.
- * @template T - The type of items in the list.
- */
-export const List = <T extends { id: string }>(
+export const List = <T extends { id?: string, pid?: number }>(
 	...initialItems: T[]
 ): List<T> => {
 	const items: T[] = [ ...initialItems ];
@@ -34,7 +27,7 @@ export const List = <T extends { id: string }>(
 	};
 	const has: List<T>['has'] = (item): boolean => items.includes(item);
 	const get: List<T>['get'] = (id): T | undefined =>
-		items.find((i) => i.id === id);
+		items.find((i) => i.id === id || i.pid === id);
 	const clear: List<T>['clear'] = (): number => (items.length = 0);
 	const remove: List<T>['remove'] = (item): boolean => {
 		const index = items.indexOf(item);

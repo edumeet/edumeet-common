@@ -1,5 +1,6 @@
 export declare type List<T extends {
-    id: string;
+    id?: string;
+    pid?: number;
 }> = {
     add: (...items: T[]) => number;
     moveFirst: (item: T) => void;
@@ -11,13 +12,7 @@ export declare type List<T extends {
     length: number;
     empty: boolean;
 };
-/**
- * A list of items that can be added to, removed from, and iterated over.
- *
- * @param {T} initialItems - The initial items to add to the list.
- * @returns {List<T>} The list of items.
- * @template T - The type of items in the list.
- */
 export declare const List: <T extends {
-    id: string;
+    id?: string;
+    pid?: number;
 }>(...initialItems: T[]) => List<T>;
