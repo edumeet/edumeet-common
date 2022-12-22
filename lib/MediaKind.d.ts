@@ -1,4 +1,4 @@
 export declare const MediaKind: {
-    AUDIO: string;
-    VIDEO: string,
+    AUDIO: "audio"
+    VIDEO: "video",
 };
