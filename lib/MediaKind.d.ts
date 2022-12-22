@@ -1,4 +1,5 @@
+export type MediaKind = "audio" | "video";
 export declare const MediaKind: {
-    AUDIO: string;
-    VIDEO: string,
+    AUDIO: "audio"
+    VIDEO: "video",
 };
