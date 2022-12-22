@@ -9,3 +9,4 @@ export { Logger } from './Logger';
 export { skipIfClosed } from './decorators';
 export { Next, Middleware, Pipeline } from './Middleware';
 export { MediaSourceType } from './MediaSourceType'
+import { MediaKind } from './MediaKind';
