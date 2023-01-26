@@ -1,6 +1,6 @@
 {
 	"name": "edumeet-common",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"description": "Common code for edumeet",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
