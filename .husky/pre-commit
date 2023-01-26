@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn build
+gitStatus=$(git status lib/)
+
+if [ -z "$gitStatus" ]; then
+    echo "Did not generate new content in lib/"
+    echo "Proceeding with commit."
+    exit 0
+fi
+
+commited=true
+case $gitStatus in
+    *"not staged for commit"*) commited=false ;;
+esac
+
+if [ "$commited" = true ]; then    
+    echo "Changes in lib/ was staged"
+    echo "Commiting to version control system"
+    exit 0
+else
+    echo "There are changes not staged in lib/"
+    echo "Review, stage changes and commit again."
+    exit 1
+fi

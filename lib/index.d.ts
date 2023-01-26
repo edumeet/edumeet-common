@@ -8,5 +8,5 @@ export { List } from './List';
 export { Logger } from './Logger';
 export { skipIfClosed } from './decorators';
 export { Next, Middleware, Pipeline } from './Middleware';
-export { MediaSourceType } from './MediaSourceType'
+export { MediaSourceType } from './MediaSourceType';
 export { MediaKind } from './MediaKind';

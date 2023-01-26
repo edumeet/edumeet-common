@@ -1,8 +1,7 @@
-export declare type MediaSourceType = "mic" | "webcam" | "screen" | "screenaudio" | "extravideo"
-export declare const MediaSourceType: {
-    MIC: "mic";
-    WEBCAM: "webcam",
-    SCREEN: "screen",
-    SCREENAUDIO: "screenaudio";
-    EXTRAVIDEO: "extravideo"
-};
+export declare const MediaSourceType: Readonly<{
+    readonly MIC: "mic";
+    readonly WEBCAM: "webcam";
+    readonly SCREEN: "screen";
+    readonly SCREENAUDIO: "screenaudio";
+    readonly EXTRAVIDEO: "extravideo";
+}>;
