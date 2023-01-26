@@ -9,7 +9,8 @@
 		"/lib"
 	],
 	"scripts": {
-		"build": "tsc"
+		"build": "tsc",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"debug": "^4.3.4",
@@ -20,6 +21,7 @@
 	"devDependencies": {
 		"@types/debug": "^4.1.7",
 		"@types/events": "^3.0.0",
-		"@types/node": "^18.11.9"
+		"@types/node": "^18.11.9",
+		"husky": "^8.0.3"
 	}
 }
