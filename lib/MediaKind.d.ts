@@ -1,5 +1,4 @@
-export type MediaKind = "audio" | "video";
-export declare const MediaKind: {
-    AUDIO: "audio"
-    VIDEO: "video",
-};
+export declare const MediaKind: Readonly<{
+    readonly AUDIO: "audio";
+    readonly VIDEO: "video";
+}>;
