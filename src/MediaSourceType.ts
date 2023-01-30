@@ -4,4 +4,6 @@ export const MediaSourceType = Object.freeze({
     SCREEN: 'screen',
     SCREENAUDIO: 'screenaudio',
     EXTRAVIDEO: 'extravideo'
-} as const)
+} as const);
+
+export type MediaSourceType = typeof MediaSourceType[keyof typeof MediaSourceType];

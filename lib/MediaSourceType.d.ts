@@ -5,3 +5,4 @@ export declare const MediaSourceType: Readonly<{
     readonly SCREENAUDIO: "screenaudio";
     readonly EXTRAVIDEO: "extravideo";
 }>;
+export declare type MediaSourceType = typeof MediaSourceType[keyof typeof MediaSourceType];
