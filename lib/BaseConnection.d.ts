@@ -1,8 +1,8 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
 import { SignalingInterface, SocketMessage } from './SignalingInterface';
-export declare type InboundNotification = (notification: SocketMessage) => void;
-export declare type InboundRequest = (request: SocketMessage, respond: (response: any) => void, reject: (error: any) => void) => void;
+export type InboundNotification = (notification: SocketMessage) => void;
+export type InboundRequest = (request: SocketMessage, respond: (response: any) => void, reject: (error: any) => void) => void;
 export declare interface BaseConnection {
     on(event: 'close', listener: () => void): this;
     on(event: 'connect', listener: () => void): this;
