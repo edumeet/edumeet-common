@@ -1,4 +1,4 @@
-export type List<T extends {
+export declare type List<T extends {
     id?: string;
     pid?: number;
 }> = {
