@@ -67,7 +67,7 @@ export class IOServerConnection extends BaseConnection {
 	public get address(): clientAddress {
 		const address: clientAddress = {
 			address: this.socket.handshake.address,
-			forwardedFor: this.socket.headers.handshake.headers['x-forwarded-for']
+			forwardedFor: this.socket.handshake.headers['x-forwarded-for']
 		}
 		return address
 	}
