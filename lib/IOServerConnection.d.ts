@@ -9,7 +9,7 @@ interface ServerClientEvents {
     notification: (notification: SocketMessage) => void;
     request: (request: SocketMessage, result: (timeout: Error | null, serverError: unknown | null, responseData: unknown) => void) => void;
 }
-export declare type clientAddress = {
+export type clientAddress = {
     address: string;
     forwardedFor?: string;
 };
