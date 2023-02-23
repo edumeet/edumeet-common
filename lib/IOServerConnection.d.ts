@@ -9,12 +9,17 @@ interface ServerClientEvents {
     notification: (notification: SocketMessage) => void;
     request: (request: SocketMessage, result: (timeout: Error | null, serverError: unknown | null, responseData: unknown) => void) => void;
 }
+export type clientAddress = {
+    address: string;
+    forwardedFor?: string;
+};
 export declare class IOServerConnection extends BaseConnection {
     closed: boolean;
     private socket;
     constructor(socket: Socket<ClientServerEvents, ServerClientEvents>);
     close(): void;
     get id(): string;
+    get address(): clientAddress;
     notify(notification: SocketMessage): void;
     private sendRequestOnWire;
     request(request: SocketMessage): Promise<unknown>;
