@@ -16,12 +16,12 @@
 		"debug": "^4.3.4",
 		"socket.io-client": "^4.6.1",
 		"socket.io-server": "^1.0.0-b",
-		"typescript": "^4.9.5"
+		"typescript": "^5.0.2"
 	},
 	"devDependencies": {
 		"@types/debug": "^4.1.7",
 		"@types/events": "^3.0.0",
-		"@types/node": "^18.14.0",
+		"@types/node": "^18.15.3",
 		"husky": "^8.0.3"
 	}
 }
