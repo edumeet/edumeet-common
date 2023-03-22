@@ -9,13 +9,13 @@ export class Logger {
 
 	constructor(prefix?: string) {
 		if (prefix) {
-			this.#debug = debug(`${process.title ?? APP_NAME}:DEBUG:${prefix}`);
-			this.#warn = debug(`${process.title ?? APP_NAME}:WARN:${prefix}`);
-			this.#error = debug(`${process.title ?? APP_NAME}:ERROR:${prefix}`);
+			this.#debug = debug(`${APP_NAME}:DEBUG:${prefix}`);
+			this.#warn = debug(`${APP_NAME}:WARN:${prefix}`);
+			this.#error = debug(`${APP_NAME}:ERROR:${prefix}`);
 		} else {
-			this.#debug = debug(`${process.title ?? APP_NAME}:DEBUG`);
-			this.#warn = debug(`${process.title ?? APP_NAME}:WARN`);
-			this.#error = debug(`${process.title ?? APP_NAME}:ERROR`);
+			this.#debug = debug(`${APP_NAME}:DEBUG`);
+			this.#warn = debug(`${APP_NAME}:WARN`);
+			this.#error = debug(`${APP_NAME}:ERROR`);
 		}
 
 		/* eslint-disable no-console */
