@@ -10,3 +10,4 @@ export { skipIfClosed } from './decorators';
 export { Next, Middleware, Pipeline } from './Middleware';
 export { MediaSourceType } from './MediaSourceType'
 export { MediaKind } from './MediaKind'
+export { KDTree, KDPoint } from './KDTree';
