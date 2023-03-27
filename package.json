@@ -1,6 +1,6 @@
 {
 	"name": "edumeet-common",
-	"version": "0.4.1",
+	"version": "0.5.0",
 	"description": "Common code for edumeet",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
@@ -9,7 +9,7 @@
 		"/lib"
 	],
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc --build src",
 		"prepare": "husky install",
 		"test": "jest __tests__/unit-tests"
 	},
