@@ -1,5 +1,6 @@
 /**
- * A point in a k-dimensional space. The position array is the coordinates of the point in the space.
+ * A point in a k-dimensional space.
+ * The position array is the coordinates of the point in the space.
  */
 export declare class KDPoint {
     position: number[];
@@ -52,19 +53,27 @@ declare class KDNode {
  *	const geoTree = new KDTree(geoPoints);
  *
  *	// Add a new point to the tree
- *	geoTree.addNode(new KDPoint([ 59.65059, 6.35415 ], { name: 'Sauda', load: 0 })); // Sauda, Norway
+ *	geoTree.addNode(
+    new KDPoint([ 59.65059, 6.35415 ],
+        { name: 'Sauda', load: 0 })
+    ); // Sauda, Norway
  *
  *	// 1 is a perfect balance. For a large tree, 1.5 is an unbalanced tree.
- *	const score = geoTree.balanceScore());
+ *	const score = geoTree.balanceScore();
  *
  *	// Rebalance the tree
  *	geoTree.rebalance();
  *
  *	// Find the nearest neighbor for a target point
- *	const target = new KDPoint([ 60.5166646, 8.1999992 ], { name: 'Geilo' }); // Geilo, Norway
+ *	const target = new KDPoint(
+        [ 60.5166646, 8.1999992 ],
+        { name: 'Geilo' }
+    ); // Geilo, Norway
  *
- *	// Find the 3 nearest neighbors, but points with a load of more than 0.1 will be ignored
- *	const nearest = geoTree.nearestNeighbors(target, 3, (point) => point.appData.load as number <= 0.1);
+ *	// Find the 3 nearest neighbors,
+ but points with a load of more than 0.1 will be ignored
+ *	const nearest = geoTree.nearestNeighbors(
+    target, 3, (point) => point.appData.load as number <= 0.1);
  */
 export declare class KDTree {
     private k;
@@ -84,5 +93,6 @@ export declare class KDTree {
     private countNodes;
     private treeHeight;
     nearestNeighbors(target: KDPoint, n: number, filter?: (point: KDPoint) => boolean): [KDPoint, number][] | undefined;
+    static getDistance(p1: KDPoint, p2: KDPoint): number;
 }
 export {};

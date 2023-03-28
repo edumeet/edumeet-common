@@ -1,5 +1,6 @@
 /**
- * A point in a k-dimensional space. The position array is the coordinates of the point in the space.
+ * A point in a k-dimensional space. 
+ * The position array is the coordinates of the point in the space.
  */
 export class KDPoint {
 	// eslint-disable-next-line no-unused-vars
@@ -7,8 +8,13 @@ export class KDPoint {
 }
 
 class KDNode {
-	// eslint-disable-next-line no-unused-vars
-	constructor(public kdPoint: KDPoint, public axis: number, public left?: KDNode, public right?: KDNode) {}
+	/* eslint-disable no-unused-vars */
+	constructor(
+		public kdPoint: KDPoint,
+		public axis: number,
+		public left?: KDNode,
+		public right?: KDNode) {}
+	/* eslint-enable no-unused-vars */
 }
 
 /**
@@ -50,19 +56,27 @@ class KDNode {
  *	const geoTree = new KDTree(geoPoints);
  *
  *	// Add a new point to the tree
- *	geoTree.addNode(new KDPoint([ 59.65059, 6.35415 ], { name: 'Sauda', load: 0 })); // Sauda, Norway
+ *	geoTree.addNode(
+	new KDPoint([ 59.65059, 6.35415 ],
+		{ name: 'Sauda', load: 0 })
+	); // Sauda, Norway
  *
  *	// 1 is a perfect balance. For a large tree, 1.5 is an unbalanced tree.
- *	const score = geoTree.balanceScore());
+ *	const score = geoTree.balanceScore();
  *
  *	// Rebalance the tree
  *	geoTree.rebalance();
  *
  *	// Find the nearest neighbor for a target point
- *	const target = new KDPoint([ 60.5166646, 8.1999992 ], { name: 'Geilo' }); // Geilo, Norway
+ *	const target = new KDPoint(
+		[ 60.5166646, 8.1999992 ],
+		{ name: 'Geilo' }
+	); // Geilo, Norway
  *
- *	// Find the 3 nearest neighbors, but points with a load of more than 0.1 will be ignored
- *	const nearest = geoTree.nearestNeighbors(target, 3, (point) => point.appData.load as number <= 0.1);
+ *	// Find the 3 nearest neighbors, 
+ but points with a load of more than 0.1 will be ignored
+ *	const nearest = geoTree.nearestNeighbors(
+	target, 3, (point) => point.appData.load as number <= 0.1);
  */
 export class KDTree {
 	root?: KDNode;
@@ -104,12 +118,17 @@ export class KDTree {
 			const dLon = lon2 - lon1;
 		
 			const R = 6371; // Earth's radius in km
-			const aHaversine = (Math.sin(dLat / 2) ** 2) + (Math.cos(lat1) * Math.cos(lat2) * (Math.sin(dLon / 2) ** 2));
+			const aHaversine = (
+				Math.sin(dLat / 2) ** 2) + 
+				(Math.cos(lat1) * Math.cos(lat2) * 
+				(Math.sin(dLon / 2) ** 2)
+				);
 			const c = 2 * Math.atan2(Math.sqrt(aHaversine), Math.sqrt(1 - aHaversine));
 		
 			return R * c;
 		} else {
-			return Math.sqrt(a.position.reduce((acc, cur, i) => acc + ((cur - b.position[i]) ** 2), 0));
+			return Math.sqrt(
+				a.position.reduce((acc, cur, i) => acc + ((cur - b.position[i]) ** 2), 0));
 		}
 	}
 
@@ -148,7 +167,10 @@ export class KDTree {
 	}
 
 	// eslint-disable-next-line no-unused-vars
-	private findNodeByFilter(filter: (point: KDPoint) => boolean, node: KDNode | undefined = this.root, parent?: KDNode): [ KDNode | undefined, KDNode | undefined ] {
+	private findNodeByFilter(filter: (point: KDPoint) => boolean,
+		node: KDNode | undefined = this.root,
+		parent?: KDNode
+	): [ KDNode | undefined, KDNode | undefined ] {
 		if (!node)
 			return [ undefined, undefined ];
 
@@ -163,7 +185,11 @@ export class KDTree {
 		return this.findNodeByFilter(filter, node.right, node);
 	}
 
-	public removeNode(point: KDPoint, node: KDNode | undefined = this.root, parent?: KDNode): boolean {
+	public removeNode(
+		point: KDPoint,
+		node: KDNode | undefined = this.root,
+		parent?: KDNode
+	): boolean {
 		if (!node)
 			return false;
 
@@ -201,7 +227,11 @@ export class KDTree {
 			return this.removeNode(point, node.right, nextParent);
 	}
 
-	private findMin(node: KDNode, parent: KDNode, axis: number): [KDNode, KDNode | undefined] {
+	private findMin(
+		node: KDNode,
+		parent: KDNode,
+		axis: number
+	): [KDNode, KDNode | undefined] {
 		if (!node.left)
 			return [ node, parent ];
 
@@ -270,16 +300,42 @@ export class KDTree {
 				maxHeap.add([ node.kdPoint, this.distance(target, node.kdPoint) ]);
 	
 			const axis = depth % this.k;
-			const nextBranch = target.position[axis] < node.kdPoint.position[axis] ? node.left : node.right;
+			const nextBranch = target.position[axis] < node.kdPoint.position[axis] ? 
+				node.left : node.right;
 			const otherBranch = nextBranch === node.left ? node.right : node.left;
 	
 			stack.push({ node: nextBranch, depth: depth + 1 });
 	
-			if (maxHeap.heap.length < n || Math.abs(target.position[axis] - node.kdPoint.position[axis]) < maxHeap.heap[0][1])
+			if (
+				maxHeap.heap.length < n || 
+				Math.abs(target.position[axis] - node.kdPoint.position[axis]) < maxHeap.heap[0][1]
+			)
 				stack.push({ node: otherBranch, depth: depth + 1 });
 		}
 
 		return maxHeap.heap.sort((a, b) => a[1] - b[1]);
+	}
+
+	public static getDistance(p1: KDPoint, p2: KDPoint): number {
+		const toRadians = (degrees: number) => degrees * (Math.PI / 180);
+	
+		const lat1 = toRadians(p1.position[0]);
+		const lon1 = toRadians(p1.position[1]);
+		const lat2 = toRadians(p2.position[0]);
+		const lon2 = toRadians(p2.position[1]);
+	
+		const dLat = lat2 - lat1;
+		const dLon = lon2 - lon1;
+	
+		const R = 6371; // Earth's radius in km
+		const aHaversine = (
+			Math.sin(dLat / 2) ** 2) + 
+			(Math.cos(lat1) * Math.cos(lat2) * 
+			(Math.sin(dLon / 2) ** 2)
+			);
+		const c = 2 * Math.atan2(Math.sqrt(aHaversine), Math.sqrt(1 - aHaversine));
+	
+		return R * c;
 	}
 }
 
@@ -303,7 +359,11 @@ class MaxHeap {
 		if (parentIndex < 0 || this.heap[parentIndex][1] >= this.heap[index][1])
 			return;
 
-		[ this.heap[parentIndex], this.heap[index] ] = [ this.heap[index], this.heap[parentIndex] ];
+		[ 
+			this.heap[parentIndex],
+			this.heap[index] ] = [ this.heap[index],
+			this.heap[parentIndex] 
+		];
 		this.bubbleUp(parentIndex);
 	}
 
@@ -315,11 +375,18 @@ class MaxHeap {
 		if (leftIndex < this.heap.length && this.heap[leftIndex][1] > this.heap[maxIndex][1])
 			maxIndex = leftIndex;
 
-		if (rightIndex < this.heap.length && this.heap[rightIndex][1] > this.heap[maxIndex][1])
+		if (rightIndex < this.heap.length && 
+			this.heap[rightIndex][1] > this.heap[maxIndex][1])
 			maxIndex = rightIndex;
 
 		if (maxIndex !== index) {
-			[ this.heap[maxIndex], this.heap[index] ] = [ this.heap[index], this.heap[maxIndex] ];
+			[
+				this.heap[maxIndex],
+				this.heap[index]
+			] = [
+				this.heap[index],
+				this.heap[maxIndex]
+			];
 			this.bubbleDown(maxIndex);
 		}
 	}
