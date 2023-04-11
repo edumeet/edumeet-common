@@ -11,3 +11,4 @@ export { Next, Middleware, Pipeline } from './Middleware';
 export { MediaSourceType } from './MediaSourceType';
 export { MediaKind } from './MediaKind';
 export { KDTree, KDPoint } from './KDTree';
+export { timeoutPromise } from './timeoutPromise';
