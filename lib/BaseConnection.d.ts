@@ -6,7 +6,7 @@ export type InboundRequest = (request: SocketMessage, respond: (response: any) =
 export declare interface BaseConnection {
     on(event: 'close', listener: () => void): this;
     on(event: 'connect', listener: () => void): this;
-    on(event: 'reconnect', listener: (attempt: number) => void): this;
+    on(event: 'reconnect', listener: () => void): this;
     on(event: 'notification', listener: InboundNotification): this;
     on(event: 'request', listener: InboundRequest): this;
 }
