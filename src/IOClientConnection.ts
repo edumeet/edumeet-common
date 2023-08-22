@@ -147,14 +147,14 @@ export class IOClientConnection extends BaseConnection {
 		});
 
 		// Listen and re-transmit events from manager.
-		// this.socket.io.on("error", (error: Error) => {
-		// 	this.emit("error", (error))
-		// })
-		// this.socket.io.on("reconnect_attempt", (attempt: number) => {
-		// 	this.emit("reconnect_attempt", (attempt))
-		// })
-		// this.socket.io.on("reconnect_error", (error: Error) => {
-		// 	this.emit("reconnect_error", (error))
-		// })
+		this.socket.io.on("error", (error: Error) => {
+			this.emit("error", (error))
+		})
+		this.socket.io.on("reconnect_attempt", (attempt: number) => {
+			this.emit("reconnect_attempt", (attempt))
+		})
+		this.socket.io.on("reconnect_error", (error: Error) => {
+			this.emit("reconnect_error", (error))
+		})
 	}
 }
