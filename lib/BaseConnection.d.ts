@@ -7,6 +7,9 @@ export declare interface BaseConnection {
     on(event: 'close', listener: () => void): this;
     on(event: 'connect', listener: () => void): this;
     on(event: 'reconnect', listener: () => void): this;
+    on(event: 'reconnect_attempt', listener: (attempt: number) => void): this;
+    on(event: 'reconnect_error', listener: (error: Error) => void): this;
+    on(event: 'error', listener: (error: Error) => void): this;
     on(event: 'notification', listener: InboundNotification): this;
     on(event: 'request', listener: InboundRequest): this;
 }
