@@ -132,6 +132,23 @@ export class KDTree {
 		}
 	}
 
+	public getAllPoints(): KDPoint[] {
+		const points: KDPoint[] = [];
+
+		const traverse = (node?: KDNode) => {
+			if (!node) return;
+
+			points.push(node.kdPoint);
+
+			traverse(node.left);
+			traverse(node.right);
+		};
+
+		traverse(this.root);
+
+		return points;
+	}
+
 	public addNode(point: KDPoint, node: KDNode | undefined = this.root, depth = 0): void {
 		const axis = depth % this.k;
 

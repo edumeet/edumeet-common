@@ -81,6 +81,7 @@ export declare class KDTree {
     constructor(points: KDPoint[], k?: number);
     buildTree(points: KDPoint[], depth?: number): KDNode | undefined;
     private distance;
+    getAllPoints(): KDPoint[];
     addNode(point: KDPoint, node?: KDNode | undefined, depth?: number): void;
     removeNodeByFilter(filter: (point: KDPoint) => boolean): boolean;
     private findNodeByFilter;
