@@ -28,7 +28,7 @@ interface ServerClientEvents {
 
 export type clientAddress = {
 	address: string
-	forwardedFor?: string
+	forwardedFor?: string | string[]
 }
 
 const logger = new Logger('SocketIOConnection');
@@ -68,8 +68,9 @@ export class IOServerConnection extends BaseConnection {
 		const address: clientAddress = {
 			address: this.socket.handshake.address,
 			forwardedFor: this.socket.handshake.headers['x-forwarded-for']
-		}
-		return address
+		};
+		
+		return address;
 	}
 
 	@skipIfClosed

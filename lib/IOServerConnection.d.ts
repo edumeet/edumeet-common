@@ -11,7 +11,7 @@ interface ServerClientEvents {
 }
 export type clientAddress = {
     address: string;
-    forwardedFor?: string;
+    forwardedFor?: string | string[];
 };
 export declare class IOServerConnection extends BaseConnection {
     closed: boolean;
