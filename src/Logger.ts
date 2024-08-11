@@ -1,39 +1,33 @@
-import debug from 'debug';
-
-const APP_NAME = 'edumeet';
+import pino from 'pino';
 
 export class Logger {
-	readonly #debug: debug.Debugger;
-	readonly #warn: debug.Debugger;
-	readonly #error: debug.Debugger;
+	public logger: pino.Logger;
 
-	constructor(prefix?: string) {
-		if (prefix) {
-			this.#debug = debug(`${APP_NAME}:DEBUG:${prefix}`);
-			this.#warn = debug(`${APP_NAME}:WARN:${prefix}`);
-			this.#error = debug(`${APP_NAME}:ERROR:${prefix}`);
-		} else {
-			this.#debug = debug(`${APP_NAME}:DEBUG`);
-			this.#warn = debug(`${APP_NAME}:WARN`);
-			this.#error = debug(`${APP_NAME}:ERROR`);
-		}
-
-		/* eslint-disable no-console */
-		this.#debug.log = console.info.bind(console);
-		this.#warn.log = console.warn.bind(console);
-		this.#error.log = console.error.bind(console);
-		/* eslint-enable no-console */
+	constructor(name: string, level: pino.Level = 'info') {
+		this.logger = pino({ name, level });
 	}
 
-	get debug(): debug.Debugger {
-		return this.#debug;
+	get info(): pino.LogFn {
+		return this.logger.info.bind(this.logger);
 	}
 
-	get warn(): debug.Debugger {
-		return this.#warn;
+	get error(): pino.LogFn {
+		return this.logger.error.bind(this.logger);
 	}
 
-	get error(): debug.Debugger {
-		return this.#error;
+	get warn(): pino.LogFn {
+		return this.logger.warn.bind(this.logger);
+	}
+
+	get debug(): pino.LogFn {
+		return this.logger.debug.bind(this.logger);
+	}
+
+	get trace(): pino.LogFn {
+		return this.logger.trace.bind(this.logger);
+	}
+
+	get fatal(): pino.LogFn {
+		return this.logger.fatal.bind(this.logger);
 	}
 }

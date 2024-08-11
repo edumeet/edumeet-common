@@ -1,8 +1,11 @@
-/// <reference types="debug" />
+import pino from 'pino';
 export declare class Logger {
-    #private;
-    constructor(prefix?: string);
-    get debug(): debug.Debugger;
-    get warn(): debug.Debugger;
-    get error(): debug.Debugger;
+    logger: pino.Logger;
+    constructor(name: string, level?: pino.Level);
+    get info(): pino.LogFn;
+    get error(): pino.LogFn;
+    get warn(): pino.LogFn;
+    get debug(): pino.LogFn;
+    get trace(): pino.LogFn;
+    get fatal(): pino.LogFn;
 }
