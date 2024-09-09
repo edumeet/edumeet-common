@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
 export type Next = () => Promise<void> | void;
-export type Middleware<T> = (
-	context: T,
-	next: Next,
-) => Promise<void> | void;
+export type Middleware<T> = (context: T, next: Next) => Promise<void> | void;
 
 export type Pipeline<T> = {
 	use: (...middlewares: Middleware<T>[]) => void;
 	remove: (middleware: Middleware<T>) => void;
+	clear: () => void;
 	execute: (context: T) => Promise<void | T>;
 }
 
@@ -22,6 +20,10 @@ export const Pipeline = <T>(...middlewares: Middleware<T>[]): Pipeline<T> => {
 		const index = stack.indexOf(middleware);
 
 		if (index > -1) stack.splice(index, 1);
+	};
+
+	const clear: Pipeline<T>['clear'] = (): void => {
+		stack.length = 0;
 	};
 
 	const execute: Pipeline<T>['execute'] = async (context): Promise<void> => {
@@ -42,5 +44,5 @@ export const Pipeline = <T>(...middlewares: Middleware<T>[]): Pipeline<T> => {
 		await runner(0);
 	};
 
-	return { use, remove, execute };
+	return { use, remove, clear, execute };
 };
