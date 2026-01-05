@@ -1,4 +1,4 @@
-import pino from 'pino';
+import pino = require("pino");
 export declare class Logger {
     logger: pino.Logger;
     constructor(name: string, level?: pino.Level);
