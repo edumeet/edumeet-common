@@ -3,7 +3,7 @@ import pino = require("pino");
 export class Logger {
 	public logger: pino.Logger;
 
-	constructor(name: string, level: pino.Level = 'info') {
+	constructor(name: string, level: pino.Level = (process.env.LOG_LEVEL as pino.Level) || 'info') {
 		this.logger = pino({ name, level });
 	}
 
