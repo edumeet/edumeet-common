@@ -10,9 +10,9 @@ export declare class KDPoint {
 declare class KDNode {
     kdPoint: KDPoint;
     axis: number;
-    left?: KDNode;
-    right?: KDNode;
-    constructor(kdPoint: KDPoint, axis: number, left?: KDNode, right?: KDNode);
+    left?: KDNode | undefined;
+    right?: KDNode | undefined;
+    constructor(kdPoint: KDPoint, axis: number, left?: KDNode | undefined, right?: KDNode | undefined);
 }
 /**
  * A k-dimensional tree. The k parameter is the number of dimensions of the space.
