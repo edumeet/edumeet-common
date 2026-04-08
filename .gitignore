@@ -3,3 +3,7 @@
 yarn-error.log
 lib/*.js.map
 lib/tsconfig.tsbuildinfo
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+.pnp.*
