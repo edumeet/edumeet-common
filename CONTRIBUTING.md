@@ -7,6 +7,8 @@ Before you start to code, create an issue describing what you want to do. Perhap
 
 ## Development
 
+To work on this library together with the services that use it (room server and media node), see the [developer setup guide](https://github.com/edumeet/edumeet/blob/main/DEVELOPMENT.md), section "Changing edumeet-common", or [its VS Code version](https://github.com/edumeet/edumeet/blob/main/DEVELOPMENT-VSCODE.md). The steps below cover this repository on its own.
+
 The following steps will get you setup to contribute changes to this repo:
 
 1. Fork this repo.
