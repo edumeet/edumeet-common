@@ -32,7 +32,7 @@ test('Should be able to add new node to tree', () => {
 	expect(sut.root).toBe(undefined);
 	sut.addNode(point);
 
-	expect(sut.root.kdPoint).toBe(point);
+	expect(sut.root?.kdPoint).toBe(point);
 });
 
 test('Rebalance should work', () => {
@@ -64,7 +64,7 @@ test('Should return closest point', () => {
 	const nearest = sut.nearestNeighbors(
 		target, 1, (point) => point.appData.load as number <= 0.8);
 
-	expect(nearest[0][0].appData).toBe(geoPoints[1].appData);
+	expect(nearest?.[0][0].appData).toBe(geoPoints[1].appData);
 });
 
 test('Should diqualify on filter', () => {
@@ -75,11 +75,15 @@ test('Should diqualify on filter', () => {
 
 	const sut = new KDTree(geoPoints);
 
-	sut.root.left.kdPoint.appData.load = 0.9;
+	const left = sut.root?.left;
+
+	if (!left) throw new Error('the tree has no left subtree');
+
+	left.kdPoint.appData.load = 0.9;
 	const nearest = sut.nearestNeighbors(
 		target, 1, (point) => point.appData.load as number <= 0.8);
 
-	expect(nearest[0][0].appData).toBe(geoPoints[2].appData);
+	expect(nearest?.[0][0].appData).toBe(geoPoints[2].appData);
 });
 
 test('Should return distance', () => {
