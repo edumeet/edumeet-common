@@ -64,7 +64,7 @@ We're using husky git-hooks. When you do a commit, it will run `yarn build`. If 
 
 - runs all Jest unit tests
 
-**`yarn test:coverage`**
+**`yarn test --coverage`**
 
 - export unit-test coverage
 
